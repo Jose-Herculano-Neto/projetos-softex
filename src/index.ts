@@ -1,11 +1,11 @@
 import "reflect-metadata";
-import { startDatabase } from "./database/data-source";
+import { AppDataSource } from "./database/data-source";
 
 
 
 const main = async() => {
     try {
-        await startDatabase();
+        await AppDataSource.initialize();
         console.log("Banco de dados conectado com sucesso!");
     }
     catch (error) {
@@ -13,3 +13,4 @@ const main = async() => {
     }
 };
 main();
+

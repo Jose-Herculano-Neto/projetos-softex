@@ -77,3 +77,24 @@ export const atualizarUsuario = async (req: Request, res: Response) => {
     return res.status(500).json({ ok: false, message: "Erro ao cadastrar usuário" });
   }
 }
+
+export const deletarUsuario =async (req:Request, res: Response) => {
+  const id = req.params.user_id;
+
+  try{
+    const user = await AppDataSource.getRepository(User).findOne({where: {id: parseInt(id)}});
+
+    if(!user) {
+      return res.status(404).json({ok: false, message: "Não existe um usuário com esse ID"})
+     
+    }
+    await AppDataSource.getRepository(User).delete(user);
+
+    return res.status(200).json({ ok: true });
+
+  }catch(error){
+    console.log(error, "Erro ao deletar usuários");
+    return res.status(500).json({ ok: false, message: "Erro ao cadastrar usuário" });
+  }
+  
+}

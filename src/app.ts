@@ -1,5 +1,5 @@
 import express from "express";
-import { atualizarUsuario, cadastrarUsuario, listarUsuarios } from "./controller/user";
+import { atualizarUsuario, cadastrarUsuario, deletarUsuario, listarUsuarios } from "./controller/user";
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(express.json());
 app.post("/users", cadastrarUsuario);
 app.get("/users", listarUsuarios);
 app.patch("/users/:user_id", atualizarUsuario);
-app.delete("/users");
+app.delete("/users/:user_id", deletarUsuario);
 
 
 
